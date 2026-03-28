@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vyges.com/schemas/vyges-metadata-v1.json",
+  "name": "vyges-clkmgr-lite",
+  "version": "0.1.0",
+  "description": "Lightweight clock manager with native TL-UL slave interface. Per-clock integer dividers, software-controlled gating, and glitch-free output.",
+  "category": "infrastructure",
+  "license": "Apache-2.0",
+  "created": "2026-03-28T01:30:05Z",
+  "updated": "2026-03-28T01:30:05Z",
+  "authors": [
+    {
+      "name": "Vyges Inc."
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "tl_i/tl_o",
+      "type": "tl-ul",
+      "role": "device",
+      "description": "TL-UL slave register interface"
+    },
+    {
+      "name": "clk_o",
+      "type": "clock",
+      "role": "output",
+      "width": "NUM_CLOCKS",
+      "description": "Gated and divided clock outputs"
+    },
+    {
+      "name": "clk_status_o",
+      "type": "status",
+      "role": "output",
+      "width": "NUM_CLOCKS",
+      "description": "Per-clock active status"
+    }
+  ],
+  "registers": [
+    {
+      "name": "CLK_EN",
+      "offset": "0x00",
+      "access": "RW",
+      "width": 32,
+      "description": "Per-clock gate enable (1 = enabled). Bits [NUM_CLOCKS-1:0] are valid."
+    },
+    {
+      "name": "CLK_STATUS",
+      "offset": "0x04",
+      "access": "RO",
+      "width": 32,
+      "description": "Per-clock active status. Bits [NUM_CLOCKS-1:0] are valid."
+    },
+    {
+      "name": "CLK_DIV0",
+      "offset": "0x10",
+      "access": "RW",
+      "width": 32,
+      "description": "Clock 0 divider. Bits [7:0]: 0 = div-by-1, N = div-by-(N+1)."
+    },
+    {
+      "name": "CLK_DIV1",
+      "offset": "0x14",
+      "access": "RW",
+      "width": 32,
+      "description": "Clock 1 divider. Bits [7:0]: 0 = div-by-1, N = div-by-(N+1)."
+    },
+    {
+      "name": "CLK_DIV2",
+      "offset": "0x18",
+      "access": "RW",
+      "width": 32,
+      "description": "Clock 2 divider. Bits [7:0]: 0 = div-by-1, N = div-by-(N+1)."
+    },
+    {
+      "name": "CLK_DIV3",
+      "offset": "0x1C",
+      "access": "RW",
+      "width": 32,
+      "description": "Clock 3 divider. Bits [7:0]: 0 = div-by-1, N = div-by-(N+1)."
+    }
+  ],
+  "parameters": [
+    {
+      "name": "NUM_CLOCKS",
+      "type": "int unsigned",
+      "default": 4,
+      "description": "Number of output clock domains (1-4)"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "opentitan-tlul",
+      "description": "OpenTitan TL-UL bus package (tlul_pkg)"
+    }
+  ],
+  "files": {
+    "rtl": [
+      "rtl/clkmgr_lite.sv"
+    ]
+  }
+}
