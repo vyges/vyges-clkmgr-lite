@@ -96,5 +96,8 @@
     "rtl": [
       "rtl/clkmgr_lite.sv"
     ]
+  },
+  "branding": {
+    "display_name": "Clock Manager"
   }
 }
