@@ -1,6 +1,10 @@
 {
   "$schema": "https://vyges.com/schemas/vyges-metadata-v1.json",
   "name": "vyges-clkmgr-lite",
+  "x-version": "1.0.0",
+  "target": ["asic", "fpga"],
+  "design_type": ["digital"],
+  "maturity": "rtl_verified",
   "version": "0.1.0",
   "description": "Lightweight clock manager with native TL-UL slave interface. Per-clock integer dividers, software-controlled gating, and glitch-free output.",
   "category": "infrastructure",
